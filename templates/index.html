@@ -1,12 +1,16 @@
 {{ define "index" }}
 {{template "header"}}
 <body>
-    <center>
-        <h1>Ascii-Art-Web</h1><br>
-        <textarea name="input" id="input" cols="30"  rows="10"></textarea><br><br><br>
-        <button class="btn btn btn-danger">Summit</button><br><br><br>
-        <textarea name="output" id="output" cols="30" rows="10"></textarea>
-    </center>
+        <center>
+            <form action="/ascii-art">
+                <h1>Ascii-Art-Web</h1><br>
+                <textarea name="input" id="input" cols="30"  rows="10"></textarea><br>
+                <button class="btn btn btn-danger">Summit</button><br>
+                <textarea name="output" id="output" cols="30" rows="10"></textarea><br>
+            </form>
+        </center>
+
+    
 </html>
 
 {{end}}
