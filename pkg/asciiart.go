@@ -45,8 +45,8 @@ func Maps(s []string) map[rune][]string {
 }
 
 func Massiv(s string) []string {
-	a := strings.ReplaceAll(s, "\n", "\\n")
-	res := strings.Split(a, "\\n")
+	a := strings.ReplaceAll(s, "\r", "\n")
+	res := strings.Split(a, "\n")
 	return res
 }
 
@@ -75,9 +75,10 @@ func Print(s []string, maps map[rune][]string) string {
 				res += string(str[i])
 			}
 		}
-		fmt.Println()
+		// fmt.Println()
 		res += "\n"
 	}
+	// fmt.Println(res)
 	return res
 }
 

@@ -4,14 +4,14 @@
         <center>
             <form action="/ascii" method="post">
                 <h1>Ascii-Art-Web</h1><br>
-                <textarea name="input" cols="30"  rows="10" placeholder="first name"></textarea><br>
+                <textarea name="input" cols="30"  rows="10" placeholder="text"></textarea><br>
                 <button class="btn btn btn-danger">submit</button><br><br>
                 <select name="banner" id="banner">
                     <option   value="standard">standard</option>
                     <option   value="shadow">shadow</option>
                     <option   value="thinkertoy">thinkertoy</option>
                 </select><br>
-                <pre>{{ . }}</pre>
+                <pre>{{ .Input }}</pre>
             </form>
         </center>
     

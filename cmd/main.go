@@ -34,15 +34,14 @@ func ascii(w http.ResponseWriter, r *http.Request) {
 	input := r.FormValue("input")
 	inputBanner := r.FormValue("banner")
 	// fmt.Println(inputBanner)
-
+	d.Input = ""
 	arr := art.Startascii(input, inputBanner)
-
 	d.Input += arr
 	d.Banner = inputBanner
 	// fmt.Println(d.Input)
 	fmt.Println(d)
 
-	res.ExecuteTemplate(w, "ascii", arr)
+	res.ExecuteTemplate(w, "ascii", d)
 }
 
 func main() {
