@@ -1,4 +1,42 @@
-body {
-  background-color: rgb(240, 214, 214);
+select {
+  position: relative;
+  top: -18px;
+  right: 2%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: window-width;
+  height: window-height;
+  background-color: lavenderblush;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity, right
 }
 
+image {
+  width: 100%;
+}
+
+h1 {
+  background-color: coral;
+}
+
+pre {
+  position: relative;
+  left: 14px;
+
+}
+
+button {
+  position: relative;
+  left: 130px;
+
+  background-color: lavenderblush;
+  /* position: absolute; */
+  margin: 0px;
+
+}
+
+pre {
+  position: relative;
+  background-color: lavenderblush;
+}

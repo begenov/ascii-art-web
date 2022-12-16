@@ -1,20 +1,40 @@
 {{ define "ascii" }}
 {{template "header"}}
-<body>
-        <center>
-            <form action="/ascii" method="post">
-                <h1>Ascii-Art-Web</h1><br>
-                <textarea name="input" cols="30"  rows="10" placeholder="text"></textarea><br>
-                <button class="btn btn btn-danger">submit</button><br><br>
-                <select name="banner" id="banner">
-                    <option   value="standard">standard</option>
-                    <option   value="shadow">shadow</option>
-                    <option   value="thinkertoy">thinkertoy</option>
-                </select><br>
-                <pre>{{ .Input }}</pre>
-            </form>
-        </center>
-    
-</body>
+<style>
+    body {
+        background-image: url(https://wiont.ru/wp-content/uploads/2017/11/kikk-2017-min-min-1300x594.jpg);
+        background-size: cover;
+        justify-content: center;
+        background-repeat: no-repeat;
+        display: flex;
+        height: 10vh; 
+        width: auto; 
+        background-color: lavenderblush;
+    }
 
+    h1 {
+        background-color: rgba(52, 224, 224, 0.158);
+    }
+</style>
+
+<body>
+
+    <!-- <img src="img/1.jpeg"> -->
+    <center>
+
+        <form action="/ascii" method="post">
+
+            <h1>Ascii-Art-Web</h1><br>
+            <textarea name="input" cols="40" rows="10" placeholder="text"></textarea><br>
+            <button>submit</button><br>
+            <select name="banner" id="banner">
+                <option value="standard">standard</option>
+                <option value="shadow">shadow</option>
+                <option value="thinkertoy">thinkertoy</option>
+            </select><br>
+            <pre>{{ .Input }}</pre>
+        </form>
+    </center>
+
+</body>
 {{end}}
