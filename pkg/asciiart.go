@@ -7,8 +7,23 @@ import (
 )
 
 func Startascii(str, file string) string {
-	as := Start(str, file)
-	return as
+	if !proverka(str) {
+		fmt.Println(str)
+		return "Ошибка"
+	} else {
+
+		as := Start(str, file)
+		return as
+	}
+}
+
+func proverka(str string) bool {
+	for _, v := range str {
+		if v < ' ' || v > '~' {
+			return false
+		}
+	}
+	return true
 }
 
 func Check(err error) {

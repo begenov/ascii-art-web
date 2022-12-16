@@ -1,7 +1,7 @@
 package art
 
-var d struct {
+// struct ASCII
+var ASCII struct {
 	Input  string `json:"input"`
 	Banner string `json:"banner"`
-	// Last  string
 }
