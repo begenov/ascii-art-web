@@ -7,17 +7,14 @@ import (
 )
 
 func Ascii(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "POST" {
+	if r.Method != "POST" { // check method
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	res, err := template.ParseFiles("templates/ascii.html", "templates/header.html")
-	if err != nil {
-		return
-	}
-	input := r.FormValue("input")
-	inputBanner := r.FormValue("banner")
-	// fmt.Println(inputBanner)
+	res, err := template.ParseFiles("templates/ascii.html", "templates/header.html") // parses HTML files
+	Check(err)
+	input := r.FormValue("input")        // create a variable
+	inputBanner := r.FormValue("banner") // create a variable
 	d.Input = ""
 	arr := Startascii(input, inputBanner)
 	d.Input += arr
