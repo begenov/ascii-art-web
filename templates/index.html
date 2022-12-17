@@ -1,36 +1,28 @@
 {{ define "index" }}
 {{template "header"}}
-<style>
-    body {
-        background-image: url(https://wiont.ru/wp-content/uploads/2017/11/kikk-2017-min-min-1300x594.jpg);
-        background-size: cover;
-        justify-content: center;
-        background-repeat: no-repeat;
-        display: flex;
-        height: 10vh;
-        width: auto;
-        background-color: lavenderblush;
-    }
+<body>  
 
-    h1 {
-        background-color: rgba(52, 224, 224, 0.158);
-    }
-</style>
-    
-<body>
-    <!-- <img src="img/1.jpeg"> -->
-    <center>
-        <form action="/ascii" method="post">
-            <h1>Ascii-Art-Web</h1><br>
-            <textarea name="input" cols="40" rows="10" placeholder="text"></textarea><br>
-            <button>submit</button><br>
+    <form action="/ascii" method="post">
+        <div class="title">
+            <h1>Ascii-Art-Web</h1>
+        </div>
+        <div class="input_text">
+            <textarea name="input" id="input" cols="30" rows="10"></textarea>
+        </div>
+        <div class="button_btn">
+            <input type="submit" value="submit">
+        </div>
+        <div class="input_banner">
             <select name="banner" id="banner">
                 <option value="standard">standard</option>
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
-            </select><br>
-        </form>
-    </center>
+            </select>
+        </div>
+    </form>
+
+
+</body>
 
     </html>
 

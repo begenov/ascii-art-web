@@ -1,59 +1,26 @@
 {{ define "ascii" }}
 {{template "header"}}
-<style>
-    body {
-        width: 100%;
-        height: 100vh;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-
-    }
-    h1 {
-        background-color: rgba(52, 224, 224, 0.158);
-    }
-    pre {
-        position: relative;
-        left: 1px;
-
-    }
-</style>
-
 <body>
-    <form action="/ascii" method="Post"></form>
-    <div class="section">
+    <form action="/ascii" method="post">
         <div class="title">
-            <h1>Ascii-Art-Web</h1><br>
+            <h1>Ascii-Art-Web</h1>
         </div>
-        <div class="inputholder">
-            <textarea name="input" cols="40" rows="10" placeholder="text"></textarea><br>
-            <div class="buttons">
-                <button>submit</button><br>
+        <div class="input_text">
+            <textarea name="input" id="input" cols="30" rows="10"></textarea>
+        </div>
+        <div class="button_btn">
+            <input type="submit" value="submit">
+        </div>
+        <div class="input_banner">
             <select name="banner" id="banner">
                 <option value="standard">standard</option>
                 <option value="shadow">shadow</option>
                 <option value="thinkertoy">thinkertoy</option>
-            </select><br>
-            </div>
+            </select>
         </div>
         <div class="result">
             <pre>{{ .Input }}</pre>
         </div>
-    </div>
-
-    <!-- <img src="img/1.jpeg"> -->
 </form>
 </body>
 {{end}}
