@@ -7,11 +7,10 @@ import (
 )
 
 func Ascii(w http.ResponseWriter, r *http.Request) {
-	// if r.Method != http.MethodPost { // check method
-	// http.Redirect(w, r, "/", http.StatusSeeOther)
-	// return
-
-	//}
+	if r.URL.Path != "/ascii" {
+		http.NotFound(w, r)
+		return
+	}
 	if r.Method != http.MethodPost {
 		// Используем метод Header().Set() для добавления заголовка 'Allow: POST' в
 		// карту HTTP-заголовков. Первый параметр - название заголовка, а
@@ -21,7 +20,7 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 		// Вызываем метод w.WriteHeader() для возвращения статус-кода 405
 		// и вызывается метод w.Write() для возвращения тела-ответа с текстом "Метод запрещен".
 		w.WriteHeader(405)
-		w.Write([]byte("GET-Метод запрещен!"))
+		w.Write([]byte("Метод запрещен!"))
 
 		// Затем мы завершаем работу функции вызвав "return", чтобы
 		// последующий код не выполнялся.
@@ -33,10 +32,15 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 	input := r.FormValue("input")        // create a variable for input
 	inputBanner := r.FormValue("banner") // create a variable for Banner
 	ASCII.Input = ""
-	arr := Startascii(input, inputBanner) // start ascii art
+	arr, err := Startascii(input, inputBanner) // start ascii art
+	if err != nil {
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+		return
+	}
 	fmt.Print(arr)
 	if arr == "Ошибка" {
-		fmt.Fprint(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		return
 	}
 	ASCII.Input += arr

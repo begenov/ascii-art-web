@@ -1,25 +1,23 @@
 package art
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strings"
 )
 
-func Startascii(str, file string) string {
-	if !proverka(str) {
-		fmt.Println(str)
-		return "Ошибка"
-	} else {
-
-		as := Start(str, file)
-		return as
+func Startascii(str, file string) (string, error) {
+	as, err := Start(str, file)
+	if err != nil {
+		return "", errors.New("Bad request")
 	}
+	return as, nil
 }
 
-func proverka(str string) bool {
+func Proverka(str string) bool {
 	for _, v := range str {
-		if v < ' ' || v > '~' {
+		if (v < ' ' || v > '~') && v != '\n' {
 			return false
 		}
 	}
@@ -117,7 +115,11 @@ func Scanfile(s string) []string {
 	return textres
 }
 
-func Start(s, file string) string {
+func Start(s, file string) (string, error) {
+	if !Proverka(s) {
+		return s, errors.New("Incorrect input")
+	}
+	a := ""
 	// fmt.Println(s)
 	if file == "standard" {
 		text, err := os.ReadFile("standard.txt")
@@ -133,8 +135,7 @@ func Start(s, file string) string {
 		// fmt.Println(1)
 		slice := Massiv(s)
 		// fmt.Println(1)
-		a := Print(slice, maps)
-		return a
+		a = Print(slice, maps)
 	} else if file == "shadow" {
 		text1, err1 := os.ReadFile("shadow.txt")
 		// fmt.Println(text)
@@ -146,8 +147,7 @@ func Start(s, file string) string {
 		maps1 := Maps(ScannerFile1)
 		// fmt.Println(1)
 		slice1 := Massiv(s)
-		a := Print(slice1, maps1)
-		return a
+		a = Print(slice1, maps1)
 	} else if file == "thinkertoy" {
 		text2, err2 := os.ReadFile("thinkertoy.txt")
 		// fmt.Println(text)
@@ -159,11 +159,9 @@ func Start(s, file string) string {
 		maps2 := Maps(ScannerFile2)
 		// fmt.Println(1)
 		slice2 := Massiv(s)
-		a := Print(slice2, maps2)
-		return a
-	} else {
-		return "Incorect: Banner. standard, shadow, thinkertoy"
+		a = Print(slice2, maps2)
 	}
+	return a, nil
 }
 
 func verify(s string) string {
