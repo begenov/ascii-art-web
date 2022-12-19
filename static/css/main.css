@@ -3,18 +3,24 @@
 }
 
 
-.input_text {
+ .input_text {
     text-align: center;
 }
 
 .button_btn {
     text-align: center;
+    position: relative;
+    left: 100px;
+    
 }
 
 .input_banner {
     text-align: center;
+    position: relative;
+    right: 60px;
+    top: -29px;
 }
 
 .result {
     text-align: center;
-}
+} 
