@@ -1,7 +1,6 @@
 package art
 
 import (
-	"fmt"
 	"net/http"
 	"text/template"
 )
@@ -37,7 +36,7 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		return
 	}
-	fmt.Print(arr)
+	// fmt.Print(arr)
 	if arr == "Ошибка" {
 		w.WriteHeader(http.StatusBadRequest)
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)

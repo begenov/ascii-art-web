@@ -8,6 +8,13 @@ import (
 )
 
 func Startascii(str, file string) (string, error) {
+	// var res string
+	// for _, v := range str {
+	// 	res += string(v)
+	// }
+	// if !Proverka(res) {
+	// 	return "", errors.New("Bad request")
+	// }
 	as, err := Start(str, file)
 	if err != nil {
 		return "", errors.New("Bad request")
@@ -17,7 +24,7 @@ func Startascii(str, file string) (string, error) {
 
 func Proverka(str string) bool {
 	for _, v := range str {
-		if (v < ' ' || v > '~') && v != '\n' {
+		if (v < ' ' || v > '~') && v != '\r' && v != '\n' {
 			return false
 		}
 	}
