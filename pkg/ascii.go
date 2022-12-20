@@ -53,12 +53,6 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		return
 	}
-	// fmt.Print(arr)
-	if arr == "Ошибка" {
-		w.WriteHeader(http.StatusBadRequest)
-		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-		return
-	}
 	ASCII.Input += arr
 	res.ExecuteTemplate(w, "ascii", ASCII) //  run ascii.html
 }
