@@ -39,6 +39,7 @@ func Ascii(w http.ResponseWriter, r *http.Request) {
 			count--
 		} else if count != 2 {
 			fmt.Println("ASd")
+			w.WriteHeader(http.StatusMethodNotAllowed)
 			fmt.Fprint(w, http.StatusMethodNotAllowed, http.StatusText(http.StatusMethodNotAllowed))
 			return
 		} else {
