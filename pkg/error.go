@@ -21,12 +21,12 @@ func Error(num int, w http.ResponseWriter, r *http.Request) {
 	} else if num == 404 {
 		reserror = "Not Found"
 	}
-	w.WriteHeader(num)
 	tem, err := template.ParseFiles("templates/error.html")
 	if err != nil {
-		Error(500, w, r)
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
+	w.WriteHeader(num)
 	var Result Errors
 	Result.Num = num
 	Result.ResError = reserror
