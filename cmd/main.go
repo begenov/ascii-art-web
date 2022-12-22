@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"web/pkg"
 )
@@ -13,6 +14,7 @@ import (
 // 	http.ListenAndServe(":8080", mux)
 // }
 func main() {
+	fmt.Println("Web server: http://localhost:8080/")
 	http.HandleFunc("/", pkg.Home)
 	http.ListenAndServe(":8080", nil)
 }
