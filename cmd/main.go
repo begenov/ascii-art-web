@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"web/pkg"
+	pkg "web/pkg"
 )
 
 // func main() {
