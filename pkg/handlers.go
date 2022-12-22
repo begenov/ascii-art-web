@@ -1,75 +1,26 @@
-package art
+package pkg
 
 import (
-	"fmt"
 	"net/http"
-	"text/template"
 )
 
-func Ascii(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/ascii" {
-		http.NotFound(w, r)
-		return
-	}
-	if r.Method != http.MethodPost {
-		// Используем метод Header().Set() для добавления заголовка 'Allow: POST' в
-		// карту HTTP-заголовков. Первый параметр - название заголовка, а
-		// второй параметр - значение заголовка.
-		w.Header().Set("Allow", http.MethodPost)
-
-		// Вызываем метод w.WriteHeader() для возвращения статус-кода 405
-		// и вызывается метод w.Write() для возвращения тела-ответа с текстом "Метод запрещен".
-		w.WriteHeader(405)
-		fmt.Fprint(w, http.StatusMethodNotAllowed, http.StatusText(http.StatusMethodNotAllowed))
-
-		// Затем мы завершаем работу функции вызвав "return", чтобы
-		// последующий код не выполнялся.
-		return
-	}
-
-	res, err := template.ParseFiles("templates/ascii.html", "templates/header.html") // parses HTML files
-	Check(err)
-	input := r.FormValue("input")        // create a variable for input
-	inputBanner := r.FormValue("banner") // create a variable for Banner
-	count := 2
-	for i := range r.Form {
-		if i != "banner" {
-			count--
-		} else if i != "input" {
-			count--
-		} else if count != 2 {
-			fmt.Println("ASd")
-			w.WriteHeader(http.StatusMethodNotAllowed)
-			fmt.Fprint(w, http.StatusMethodNotAllowed, http.StatusText(http.StatusMethodNotAllowed))
-			return
+func Home(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/" {
+		if r.Method == http.MethodGet {
+			Get(w, r)
 		} else {
-			continue
+			Error(405, w, r)
+			return
 		}
-	}
-
-	ASCII.Input = ""
-	arr, err := Startascii(input, inputBanner) // start ascii art
-	if err != nil {
-		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+	} else if r.URL.Path == "/ascii-art" {
+		if r.Method == http.MethodPost {
+			Post(w, r)
+		} else {
+			Error(405, w, r)
+			return
+		}
+	} else {
+		Error(404, w, r)
 		return
 	}
-	ASCII.Input += arr
-	res.ExecuteTemplate(w, "ascii", ASCII) //  run ascii.html
-}
-
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-	if r.Method != http.MethodGet {
-		w.Header().Set("Allow", http.MethodPost)
-		w.WriteHeader(405)
-		w.Write([]byte("Метод запрещен!"))
-
-		return
-	}
-	res, err := template.ParseFiles("templates/index.html", "templates/header.html") // parses HTML files
-	Check(err)                                                                       // check for error
-	res.ExecuteTemplate(w, "index", nil)                                             // run index.html
 }

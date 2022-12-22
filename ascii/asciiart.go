@@ -1,4 +1,4 @@
-package art
+package pkg
 
 import (
 	"errors"

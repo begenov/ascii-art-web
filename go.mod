@@ -1,3 +1,3 @@
-module art
+module web
 
 go 1.19

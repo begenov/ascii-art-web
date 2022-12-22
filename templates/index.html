@@ -1,29 +1,20 @@
-{{ define "index" }}
-{{template "header"}}
-<body>  
-
-    <form action="/ascii" method="post">
-        <div class="title">
-            <h1>Ascii-Art-Web</h1>
-        </div>
-        <div class="input_text">
-            <textarea name="input" id="input" cols="30" rows="10" placeholder="Here you write text ..."></textarea>
-        </div>
-        <div class="button_btn">
-            <input type="submit" value="submit">
-        </div>
-        <div class="input_banner">
-            <select name="banner" id="banner">
-                <option value="standard">standard</option>
-                <option value="shadow">shadow</option>
-                <option value="thinkertoy">thinkertoy</option>
-            </select>
-        </div>
-    </form>
-
-
+<head></head>
+<body>
+  <form action="/ascii-art" method="post">
+    <div class="header">
+      <h1>Ascii-Art-Web</h1>
+    </div>
+    <div>
+      <select class="Font" name="banner" id="banner">
+        <option value="standard">standard</option>
+        <option value="thinkertoy">thinkertoy</option>
+        <option value="shadow">shadow</option>
+      </select>
+    </div>
+    <div><textarea name="input" id="input"></textarea></div>
+    <button>Result</button>
+    <div>
+      <pre>{{ . }}</pre>
+    </div>
+  </form>
 </body>
-
-    </html>
-
-{{end}}
